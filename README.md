@@ -8,7 +8,7 @@
 --- Clone Project Section ----
 * เปิด Windows Command Prompt & PowerShell ที่สามารถใช้งานได้
 * cd ไปยังไดร์ฟที่ต้องการติดตั้งโปรเจค
-* พิมพ์ git clone https://github.com/PokpongSunapha16/CICD_Clone.git
+* พิมพ์ git clone https://github.com/PokpongSunapha16/s65114540345.git
 * เสร็จสิ้นการ Clone Project
 * **ปล. สามารถใช้คำสั่ง explorer . เพื่อใช้ในการเข้าไปยังตำแหน่งโฟลเดอร์โปรเจคได้**
 
@@ -20,14 +20,14 @@
 
 --- ขั้นตอนการดำเนินการใช้งานเว็บไซต์ ---
 
-* 1  cd CICD_Clone
+* 1  cd s65114540345
 (ใช้ CD เข้าไปยัง Repo ที่ได้ทำการ Clone)
 
-* 2 docker compose up -d
+* 2 docker compose up -d --build
 (ใช้สร้าง docker container และ image ของโปรเจคนี้)
 
 **หลังจากที่ทำการ Build โปรเจคไปแล้ว ให้ทำการเปิดบราวเซอร์ และไปยัง URL เพื่อเข้าใช้งาน**
-http://localhost:3000/
+http://localhost:10345/
 
 (ปล. หากเปิด Night Mode ในบราวเซอร์ ตัวหนังสือบางส่วนจะเป็นสีจาง แนะนำให้ปิด Night Mode)
 
