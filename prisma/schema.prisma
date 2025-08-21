@@ -1,0 +1,302 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  username        String   @unique @db.Text
+  mail            String   @unique @db.Text
+  password        String   @db.Text
+  profile_picture String?  @db.Text
+  note            String?  @db.Text
+  district        District @default(NONE)
+  position        Position @default(NONE)
+  status          Status   @default(OFFLINE)
+  role            Role     @default(USER)  // เพิ่มฟิลด์สำหรับกำหนดสิทธิ์
+
+  galleries             Gallery[]
+  reviewsReceived       Review[]       @relation("UserReviews")
+  reviewsGiven          Review[]       @relation("UserReviewers")
+  createdTeams          Team[]         @relation("UserTeams")
+  teamMemberships       TeamMember[]
+  sentNotifications     Notification[] @relation("SenderNotifications")
+  receivedNotifications Notification[] @relation("ReceiverNotifications")
+
+  contactInfo ContactInfo?   @relation("UserContact")
+  comments    CommentBoard[] // ✅ เพิ่มความสัมพันธ์ของ CommentBoard
+
+  blogs        Blog[] // One-to-Many (User สามารถเขียนหลาย Blog ได้)
+  blogComments BlogComment[] // One-to-Many (User สามารถแสดงความคิดเห็นใน Blog ได้)
+  hearts       Heart[] // ✅ เพิ่มความสัมพันธ์กับตาราง Heart
+  reports      Report[] // ✅ เพิ่มความสัมพันธ์กับ Report
+}
+
+model ContactInfo {
+  id     Int  @id @default(autoincrement())
+  userId Int  @unique
+  user   User @relation("UserContact", fields: [userId], references: [id], onDelete: Cascade)
+
+  facebook  String? @db.Text
+  instagram String? @db.Text
+  line      String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Gallery {
+  id        Int      @id @default(autoincrement())
+user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id   Int
+  image     String   @db.Text
+  upload_at DateTime @default(now())
+}
+
+model Review {
+  id               Int      @id @default(autoincrement())
+  reviewed_user_id Int
+  reviewer_user_id Int
+  score            Int
+  comment          String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt  // ✅ เพิ่ม field นี้เพื่อให้รองรับการแก้ไขรีวิว
+
+  reviewed_user User @relation("UserReviews", fields: [reviewed_user_id], references: [id], onDelete: Cascade)
+  reviewer_user User @relation("UserReviewers", fields: [reviewer_user_id], references: [id], onDelete: Cascade)
+
+  @@unique([reviewed_user_id, reviewer_user_id]) // ✅ ป้องกันการรีวิวซ้ำ
+}
+
+model Blog {
+  id        Int          @id @default(autoincrement())
+  userId    Int
+  title     String       @db.Text
+  slug      String       @unique @db.Text // ใช้ slug เป็น URL identifier
+  picture   String?      @db.Text
+  content   String       @db.Text
+  category  BlogCategory
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  hearts    Int          @default(0)
+
+  author    User          @relation(fields: [userId], references: [id], onDelete: Cascade) // ความสัมพันธ์กับ User
+  comments  BlogComment[]
+  heartedBy Heart[] // ✅ เพิ่มความสัมพันธ์กับตาราง Heart
+  reports   Report[] // ✅ เพิ่มความสัมพันธ์กับ Report
+}
+
+model BlogComment {
+  id        Int      @id @default(autoincrement())
+  blogId    Int
+  userId    Int
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  blog   Blog @relation(fields: [blogId], references: [id], onDelete: Cascade) // ความสัมพันธ์กับ Blog
+  author User @relation(fields: [userId], references: [id], onDelete: Cascade) // ความสัมพันธ์กับ User
+}
+
+model Heart {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  blogId    Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  blog Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, blogId]) // ✅ ป้องกันการกดไลก์ซ้ำ
+}
+
+model Report {
+  id        Int      @id @default(autoincrement())
+  blogId    Int
+  userId    Int?
+  reason    Problems // เปลี่ยนจาก String เป็น Enum
+  details   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  blog Blog  @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
+model Team {
+  id         Int @id @default(autoincrement())
+  created_by Int
+
+  creator     User     @relation("UserTeams", fields: [created_by], references: [id], onDelete: Cascade)
+  created_at  DateTime @default(now())
+  name        String   @unique @db.Text
+  team_logo   String?  @db.Text
+  description String?  @db.Text
+  start_at    DateTime
+  end_at      DateTime
+  privacy     Privacy
+
+  district District
+  type     TeamType
+  court    String   @db.Text
+  map      String?  @db.Text
+
+  members       TeamMember[]
+  notifications Notification[] @relation("TeamNotifications")
+
+  member_count Int            @default(0)
+  comments     CommentBoard[] // ✅ เพิ่มความสัมพันธ์ของ CommentBoard                   
+}
+
+model CommentBoard {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  teamId Int
+  team   Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+}
+
+model TeamMember {
+  id        Int          @id @default(autoincrement())
+  teamId    Int
+  userId    Int
+  team      Team         @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  joined_at DateTime     @default(now())
+  status    MemberStatus @default(PENDING)
+  role      TeamRole     @default(PLAYER)
+
+  @@unique([teamId, userId])
+}
+
+model Notification {
+  id         Int                @id @default(autoincrement())
+  senderId   Int
+  receiverId Int
+  teamId     Int?
+  type       NotificationType   @default(TEAM_INVITE)
+  status     NotificationStatus @default(UNREAD)
+  message    String?            @db.Text
+  createdAt  DateTime           @default(now())
+  expiresAt  DateTime? // กำหนดวันหมดอายุของการแจ้งเตือน
+
+  sender   User  @relation("SenderNotifications", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User  @relation("ReceiverNotifications", fields: [receiverId], references: [id], onDelete: Cascade)
+  team     Team? @relation("TeamNotifications", fields: [teamId], references: [id], onDelete: Cascade)
+}
+
+model Announcement {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+model FeaturedAnnouncement {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.Text
+  image String @db.Text //
+  linkUrl   String   @db.Text //
+  details   String?  @db.Text //
+  createdAt DateTime @default(now()) @updatedAt
+}
+
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Privacy {
+  PUBLIC
+  PRIVATE
+}
+
+enum TeamType {
+  THREE_X_THREE
+  FIVE_X_FIVE
+}
+
+enum MemberStatus {
+  PENDING
+  APPROVED
+  REMOVED
+}
+
+enum TeamRole {
+  CAPTAIN
+  PLAYER
+}
+
+enum District {
+  NONE
+  MUEANG
+  SI_MUEANG_MAI
+  KHONG_CHIAM
+  KHUEANG_NAI
+  KHEMMARAT
+  DET
+  NA_CHALUAI
+  NAM_YUEN
+  BUNTHARIK
+  TRAKAN
+  KUT_KHAOPUN
+  MUANG_SAM_SIP
+  WARIN
+  PHIBUN
+  TAN_SUM
+  PHO_SAI
+  SAMRONG
+  DON_MOT_DAENG
+  SIRINDHORN
+  THUNG_SI_UDOM
+  SI_LAK_CHAI
+  NAM_KHUN
+  LAO_SUEA_KOK
+  SAWANG_WIRAWONG
+}
+
+enum Position {
+  NONE
+  GUARD
+  FORWARD
+  CENTER
+}
+
+enum Status {
+  ACTIVE
+  OFFLINE
+}
+
+enum NotificationType {
+  TEAM_INVITE
+  TEAM_REQUEST
+  GAME_INVITE
+  MESSAGE
+}
+
+enum NotificationStatus {
+  UNREAD
+  READ
+  ACTIONED
+}
+
+enum BlogCategory {
+  GENERAL
+  HEALTH
+  BASKETBALL
+}
+
+enum Problems {
+  RUDE
+  SEXUAL
+  VIOLENT
+  THREATEN
+}

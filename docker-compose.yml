@@ -1,0 +1,51 @@
+services:
+  web:
+    build: .
+    ports:
+      - "10345:10345"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://admin:1234@db:30345/ubonhooper
+      AUTH_TRUST_HOST: true
+      JWT_SECRET: "your-secret-key"
+      SEED_ON_STARTUP: "true"
+  
+    depends_on:
+      db:
+        condition: service_healthy   # หรือ service_healthy ถ้าใส่ healthcheck ให้ db
+    restart: always
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: ubonhooper
+      PGPORT: 30345
+    ports:
+      - "30345:30345"
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d ubonhooper || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+
+
+
+    # แนะนำให้ปิดพอร์ตภายนอกถ้าเป็น production จริง
+    # ports:
+    #   - "5432:5432"
+    # healthcheck (ถ้าอยากให้ web รอจน db พร้อมจริง ๆ ก่อน start)
+    # healthcheck:
+    #   test: ["CMD-SHELL", "pg_isready -U admin -d ubonhooper || exit 1"]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 20
