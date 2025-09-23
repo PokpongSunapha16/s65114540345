@@ -34,7 +34,7 @@ const FindPlayerPage = () => {
       }); // Log คำขอที่ส่งไป
 
       const response = await fetch(
-        `/api/findplayer?district=${district}&query=${query}&userId=1`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/findplayer?district=${district}&query=${query}&userId=1`
       );
 
       if (!response.ok) {
@@ -133,7 +133,7 @@ const FindPlayerPage = () => {
     if (!selectedPlayer) return;
 
     try {
-      const response = await fetch(`/api/invite`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/invite`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

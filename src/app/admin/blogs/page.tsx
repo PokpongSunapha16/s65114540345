@@ -23,7 +23,7 @@ export default function AdminBlogs() {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const res = await fetch("/api/admin/blogs");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs`);
         if (!res.ok) throw new Error("Failed to fetch blogs");
         const data = await res.json();
         setBlogs(data);
@@ -51,7 +51,7 @@ export default function AdminBlogs() {
   // ✅ ฟังก์ชันลบบล็อก
   const handleDelete = async (blogId: number) => {
     try {
-      const res = await fetch("/api/admin/blogs", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/blogs`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId }),

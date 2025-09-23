@@ -30,7 +30,7 @@ const UserNavbar: React.FC = () => {
   useEffect(() => {
     async function fetchUserSession() {
       try {
-        const res = await fetch("/api/auth/status", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/status`, {
           method: "GET",
           credentials: "include",
         });
@@ -63,7 +63,7 @@ const UserNavbar: React.FC = () => {
     async function fetchNotifications() {
       try {
         console.log(`📡 Fetching notifications for userId: ${userId}`);
-        const response = await fetch(`/api/notifications?userId=${userId}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notifications?userId=${userId}`);
         if (!response.ok) throw new Error("Failed to fetch notifications");
 
         const data = await response.json();
@@ -87,7 +87,7 @@ const UserNavbar: React.FC = () => {
     if (!hasUnread) return;
 
     try {
-      const response = await fetch("/api/notifications/mark-as-read", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notifications/mark-as-read`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -104,7 +104,7 @@ const UserNavbar: React.FC = () => {
   // ✅ Logout & รีเฟรช Navbar
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/auth/logout", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

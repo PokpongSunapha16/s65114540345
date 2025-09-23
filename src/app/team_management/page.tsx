@@ -21,7 +21,7 @@ const fetcher = (url: string) => fetch(url, { credentials: "include" }).then((re
 
 export default function TeamManagementPage() {
   const router = useRouter();
-  const { data, mutate, error } = useSWR("/api/team_management", fetcher);
+  const { data, mutate, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management`, fetcher);
   const teams = data?.teams || [];
   const [searchQuery, setSearchQuery] = useState<string>("");
 

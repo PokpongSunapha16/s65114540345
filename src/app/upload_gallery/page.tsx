@@ -39,7 +39,7 @@ export default function UploadGalleryPage() {
 
       setIsUploading(true);
       try {
-        const res = await fetch("/api/gallery", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -36,7 +36,7 @@ export default function TeamMembersPage() {
       if (!teamName) return;
       const decodedTeamName = decodeURIComponent(teamName as string);
 
-      const res = await fetch(`/api/team_management/${encodeURIComponent(decodedTeamName)}/member`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(decodedTeamName)}/member`, {
         credentials: "include",
       });
 
@@ -63,7 +63,7 @@ export default function TeamMembersPage() {
   
       setIsKicking(true); // ✅ แสดงสถานะกำลังเตะผู้เล่น
       const cleanedTeamName = encodeURIComponent(teamName);
-      const response = await fetch(`/api/team_management/${cleanedTeamName}/member/${userId}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${cleanedTeamName}/member/${userId}`, {
         method: "DELETE",
         credentials: "include",
       });

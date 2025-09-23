@@ -53,7 +53,7 @@ export default function CreateBlogPage() {
     }
 
     // ✅ ส่งข้อมูลไปยัง API `/api/blog/create`
-    const response = await fetch("/api/blog/create", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/create`, {
       method: "POST",
       body: JSON.stringify({
         title,

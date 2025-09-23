@@ -72,10 +72,10 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const responses = await Promise.all([
-          fetch('/api/home-random-users'),
-          fetch('/api/home-random-blogs'),
-          fetch('/api/announcement'), // ✅ ดึงประกาศล่าสุด
-          fetch('/api/featured-announcements'), // ✅ ดึงประกาศที่น่าสนใจ
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/home-random-users`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/home-random-blogs`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/announcement`), // ✅ ดึงประกาศล่าสุด
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/featured-announcements`), // ✅ ดึงประกาศที่น่าสนใจ
         ]);
 
         if (responses.some((res) => !res.ok)) {

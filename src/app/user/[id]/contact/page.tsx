@@ -32,7 +32,7 @@ export default function UserContactPage() {
 
         console.log("📌 Fetching contact info for user:", id);
 
-        const res = await fetch(`/api/user/${id}/contact`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/${id}/contact`, {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" },

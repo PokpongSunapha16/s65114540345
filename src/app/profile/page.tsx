@@ -77,13 +77,13 @@ export default function ProfilePage() {
         setLoading(true);
 
         // ดึงข้อมูลโปรไฟล์
-        const profileRes = await fetch("/api/profile", { credentials: "include" });
+        const profileRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, { credentials: "include" });
         if (!profileRes.ok) throw new Error("Failed to fetch profile");
         const profileData = await profileRes.json();
         setProfile(profileData);
 
         // ดึงข้อมูลอัลบั้มรูปภาพ
-        const galleryRes = await fetch("/api/gallery", { credentials: "include" });
+        const galleryRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`, { credentials: "include" });
         if (!galleryRes.ok) throw new Error("Failed to fetch gallery");
         const galleryData: Gallery[] = await galleryRes.json();
         setGalleries(galleryData);
@@ -120,7 +120,7 @@ export default function ProfilePage() {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch("/api/gallery", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),

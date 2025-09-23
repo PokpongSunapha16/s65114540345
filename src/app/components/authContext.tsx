@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const res = await fetch("/api/auth/status", { credentials: "include" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/status`, { credentials: "include" });
         const data = await res.json();
         setIsLoggedIn(data.isLoggedIn);
         localStorage.setItem("isLoggedIn", data.isLoggedIn ? "true" : "false"); // ✅ บันทึกสถานะล็อกอินใน localStorage

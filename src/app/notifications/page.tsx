@@ -19,7 +19,7 @@ const NotificationsPage = () => {
   useEffect(() => {
     async function fetchNotifications() {
       try {
-        const response = await fetch("/api/notifications");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notifications`);
         if (!response.ok) throw new Error("Failed to fetch notifications");
 
         const data = await response.json();
@@ -50,7 +50,7 @@ const NotificationsPage = () => {
         teamId: teamId,
       });
 
-      const response = await fetch("/api/notifications/accept", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notifications/accept`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ notificationId: notif.id, teamId: teamId }),
@@ -75,7 +75,7 @@ const NotificationsPage = () => {
     try {
       console.log("📤 Declining Invite for:", { notificationId: notif.id });
 
-      const response = await fetch("/api/notifications/decline", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notifications/decline`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ notificationId: notif.id }),

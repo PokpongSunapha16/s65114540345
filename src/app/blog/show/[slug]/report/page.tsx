@@ -27,7 +27,7 @@ export default function ReportPage() {
     }
 
     try {
-      const res = await fetch(`/api/blog/show/${slug}/report`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/report`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

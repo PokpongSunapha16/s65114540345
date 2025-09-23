@@ -13,7 +13,7 @@ export default function ReviewForm({ userId, onReviewSubmit }: ReviewFormProps) 
   const [comment, setComment] = useState("");
 
   const handleSubmit = async () => {
-    await fetch("/api/review", {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/review`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ reviewed_user_id: userId, score, comment }),

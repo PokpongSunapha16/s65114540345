@@ -27,7 +27,7 @@ export default function AdminReports() {
   useEffect(() => {
     async function fetchReports() {
       try {
-        const res = await fetch("/api/admin/reports");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/reports`);
         if (!res.ok) throw new Error("Failed to fetch reports");
         const data = await res.json();
         setReports(data);
@@ -41,7 +41,7 @@ export default function AdminReports() {
 
   const handleDelete = async (reportId: number) => {
     try {
-      const res = await fetch("/api/admin/reports", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/reports`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ reportId }),

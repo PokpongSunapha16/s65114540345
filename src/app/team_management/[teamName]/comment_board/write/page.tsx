@@ -31,7 +31,7 @@ export default function WriteComment() {
     try {
       console.log("📤 Sending comment:", content); // ตรวจสอบค่าก่อนส่ง
   
-      const response = await fetch(`/api/team_management/${encodeURIComponent(safeTeamName)}/comment_board/write`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(safeTeamName)}/comment_board/write`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

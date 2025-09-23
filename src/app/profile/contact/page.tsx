@@ -18,7 +18,7 @@ export default function ContactDetailPage() {
   useEffect(() => {
     const fetchContactDetail = async () => {
       try {
-        const res = await fetch("/api/profile/contact", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile/contact`, {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" },

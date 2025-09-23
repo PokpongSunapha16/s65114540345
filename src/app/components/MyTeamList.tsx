@@ -20,7 +20,7 @@ const MyTeamList: React.FC<MyTeamListProps> = ({ onClose, onSelectTeam, selected
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await fetch("/api/myteams");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/myteams`);
         if (!response.ok) throw new Error("Failed to fetch teams");
 
         const data = await response.json();
@@ -60,7 +60,7 @@ const MyTeamList: React.FC<MyTeamListProps> = ({ onClose, onSelectTeam, selected
     console.log("📌 กำลังส่งคำเชิญ:", { teamId: team.id, receiverId: selectedPlayerId });
   
     try {
-      const response = await fetch("/api/invite", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/invite`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

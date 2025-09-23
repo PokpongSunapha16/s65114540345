@@ -19,7 +19,7 @@ export default function CommentBoard() {
 
   const fetchComments = async () => {
     try {
-      const res = await fetch(`/api/team_management/${encodeURIComponent(teamName as string)}/comment_board`)
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(teamName as string)}/comment_board`)
       const data = await res.json();
       console.log("📥 Received comments:", data);
       if (Array.isArray(data)) {

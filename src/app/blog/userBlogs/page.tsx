@@ -21,7 +21,7 @@ export default function UserBlogsPage() {
   useEffect(() => {
     async function fetchUserBlogs() {
       try {
-        const res = await fetch("/api/user/blogs");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/blogs`);
         const data = await res.json();
 
         if (!res.ok) {

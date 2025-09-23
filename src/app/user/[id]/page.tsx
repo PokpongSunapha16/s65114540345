@@ -49,7 +49,7 @@ export default function UserProfilePage() {
     const fetchUserProfile = async () => {
       if (!userId) return;
       try {
-        const res = await fetch(`/api/user/${userId}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/${userId}`);
         if (!res.ok) throw new Error("Failed to fetch user profile");
         const data = await res.json();
 

@@ -12,7 +12,7 @@ export default function Hearts ({ slug }: { slug: string }) {
   useEffect(() => {
     async function fetchLikes() {
       try {
-        const res = await fetch(`/api/blog/show/${slug}/heart`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/heart`);
         if (!res.ok) throw new Error("Failed to fetch likes");
         const data = await res.json();
         
@@ -32,7 +32,7 @@ export default function Hearts ({ slug }: { slug: string }) {
     if (loading) return;
     setLoading(true);
     try {
-      const res = await fetch(`/api/blog/show/${slug}/heart`, { method: "POST" });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/heart`, { method: "POST" });
       if (!res.ok) throw new Error("Failed to like/unlike post");
 
       const data = await res.json();

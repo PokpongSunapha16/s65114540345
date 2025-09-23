@@ -15,7 +15,7 @@ export default function LeaveTeamButton() {
     setIsLeaving(true);
 
     try {
-      const response = await fetch(`/api/team_management/${encodeURIComponent(teamName as string)}/leave`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(teamName as string)}/leave`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });

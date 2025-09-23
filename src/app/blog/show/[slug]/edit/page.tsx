@@ -17,7 +17,7 @@ export default function EditBlogPage() {
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const res = await fetch(`/api/blog/show/${slug}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}`);
         if (!res.ok) throw new Error("ไม่พบข้อมูลบล็อก");
 
         const data = await res.json();
@@ -49,7 +49,7 @@ export default function EditBlogPage() {
       formData.append("content", content);
       if (image) formData.append("image", image);
 
-      const res = await fetch(`/api/blog/show/${slug}/edit`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/edit`, {
         method: "PUT",
         body: formData,
       });

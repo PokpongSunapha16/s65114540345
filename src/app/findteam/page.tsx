@@ -54,7 +54,7 @@ export default function FindTeamPage() {
   const fetchTeams = async (district: string, query: string) => {
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/findteam?district=${district}&query=${query}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/findteam?district=${district}&query=${query}`);
       if (!res.ok) throw new Error("Failed to fetch teams");
       const data = await res.json();
       setTeams(data.teams || []);

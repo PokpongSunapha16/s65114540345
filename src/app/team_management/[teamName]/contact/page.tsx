@@ -29,9 +29,9 @@ export default function TeamContactPage() {
         if (!teamName) return;
         const decodedTeamName = decodeURIComponent(teamName as string);
         
-        console.log("📌 Fetching contact info from:", `/api/team_management/${encodeURIComponent(decodedTeamName)}/contact`);
+        console.log("📌 Fetching contact info from:", `${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(decodedTeamName)}/contact`);
   
-        const res = await fetch(`/api/team_management/${encodeURIComponent(decodedTeamName)}/contact`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(decodedTeamName)}/contact`, {
           method: "GET",
           credentials: "include",
           headers: { "Content-Type": "application/json" },

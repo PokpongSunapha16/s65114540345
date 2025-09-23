@@ -65,7 +65,7 @@ export default function TeamDetailPage() {
         const decodedTeamName = decodeURIComponent(teamName);
         console.log("Fetching team:", decodedTeamName);
   
-        const res = await fetch(`/api/team_management/${encodeURIComponent(decodedTeamName)}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(decodedTeamName)}`, {
           credentials: "include",
         });
   
@@ -102,7 +102,7 @@ export default function TeamDetailPage() {
       if (!teamName || Array.isArray(teamName)) return; // ✅ ป้องกันข้อผิดพลาดก่อนใช้
       setIsSaving(true);
   
-      const response = await fetch(`/api/team_management/${encodeURIComponent(teamName)}/map`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(teamName)}/map`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ map: mapLink }),

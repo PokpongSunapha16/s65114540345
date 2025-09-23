@@ -71,7 +71,7 @@ export default function AdminUsers() {
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const res = await fetch(`/api/admin/users?search=${searchQuery}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users?search=${searchQuery}`);
         if (!res.ok) throw new Error("Failed to fetch users with gallery");
         const data = await res.json();
         setUsers(data);
@@ -99,7 +99,7 @@ export default function AdminUsers() {
     if (!window.confirm("⚠️ คุณต้องการลบรูปภาพนี้หรือไม่?")) return;
 
     try {
-      await fetch("/api/admin/users", {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageId }),
@@ -128,7 +128,7 @@ export default function AdminUsers() {
     if (!window.confirm("🚨 คุณแน่ใจหรือไม่ว่าต้องการลบสมาชิกคนนี้? การลบนี้ไม่สามารถย้อนกลับได้!")) return;
 
     try {
-      const res = await fetch("/api/admin/users", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/users`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId }), // ส่ง userId

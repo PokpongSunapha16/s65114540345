@@ -52,7 +52,7 @@ export default function EditTeamPage() {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const res = await fetch(`/api/team_management/${encodeURIComponent(safeTeamName)}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(safeTeamName)}`);
         if (!res.ok) throw new Error("Failed to fetch team details");
 
         const data = await res.json();
@@ -82,7 +82,7 @@ export default function EditTeamPage() {
     if (!team) return;
 
     try {
-      const res = await fetch(`/api/team_management/${encodeURIComponent(safeTeamName)}/update`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(safeTeamName)}/update`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(team),

@@ -23,7 +23,7 @@ export default function EditProfilePage() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("/api/profile", { credentials: "include" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, { credentials: "include" });
         if (!res.ok) throw new Error("Failed to fetch profile");
         const data = await res.json();
 
@@ -43,7 +43,7 @@ export default function EditProfilePage() {
   const handleSave = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/profile", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ profile_picture: newProfilePicture, note, district, position }),

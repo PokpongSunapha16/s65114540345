@@ -26,7 +26,7 @@ const FindTeamPopup: React.FC<FindTeamPopupProps> = ({ team, onClose, onViewTeam
   const handleJoinTeam = async () => {
     try {
       setIsJoining(true);
-      const response = await fetch(`/api/team_management/${encodeURIComponent(team.name)}/join`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(team.name)}/join`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -50,7 +50,7 @@ const FindTeamPopup: React.FC<FindTeamPopupProps> = ({ team, onClose, onViewTeam
   const handleRequestToJoin = async () => {
     try {
       setIsRequesting(true);
-      const response = await fetch("/api/team_management/request-to-join", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/request-to-join`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ teamName: team.name }),

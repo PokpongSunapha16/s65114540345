@@ -24,7 +24,7 @@ export default function CommentSection({ slug, userId }: { slug: string; userId:
   useEffect(() => {
     async function fetchComments() {
       try {
-        const res = await fetch(`/api/blog/show/${slug}/comments`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/comments`);
         const data = await res.json();
         if (res.ok) {
           setComments(data);
@@ -48,7 +48,7 @@ export default function CommentSection({ slug, userId }: { slug: string; userId:
     setLoading(true);
 
     try {
-      const res = await fetch(`/api/blog/show/${slug}/comments`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/comments`, {
         method: "POST",
         body: JSON.stringify({ content: newComment }),
         headers: { "Content-Type": "application/json" },
@@ -73,7 +73,7 @@ export default function CommentSection({ slug, userId }: { slug: string; userId:
     if (!window.confirm("คุณแน่ใจหรือไม่ที่ต้องการลบความคิดเห็นนี้?")) return;
 
     try {
-      const res = await fetch(`/api/blog/show/${slug}/comments/delete/${commentId}`, { method: "DELETE" });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/comments/delete/${commentId}`, { method: "DELETE" });
       const data = await res.json();
 
       if (!res.ok) throw new Error(data.error || "Failed to delete comment");

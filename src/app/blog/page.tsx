@@ -18,7 +18,7 @@ export default function BlogPage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetch(`/api/blog?search=${searchQuery}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog?search=${searchQuery}`)
       .then((res) => res.json())
       .then((data) => {
         if (!data || !Array.isArray(data.blogs)) {

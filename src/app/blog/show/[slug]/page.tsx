@@ -33,7 +33,7 @@ export default function BlogDetail() {
   useEffect(() => {
     async function fetchUserStatus() {
       try {
-        const res = await fetch("/api/auth/status");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/status`);
         const data = await res.json();
         if (res.ok && data.isLoggedIn) {
           setUserId(data.userId);
@@ -52,7 +52,7 @@ export default function BlogDetail() {
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const res = await fetch(`/api/blog/show/${slug?.toString()}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug?.toString()}`);
         const data = await res.json();
         if (!res.ok || !data) throw new Error(data.error || "Failed to fetch blog");
         setBlog(data);
@@ -69,7 +69,7 @@ export default function BlogDetail() {
   const handleDelete = async () => {
     if (!window.confirm("คุณแน่ใจหรือไม่ที่ต้องการลบบล็อกนี้?")) return;
     try {
-      const res = await fetch(`/api/blog/show/${slug}/delete`, { method: "DELETE" });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/delete`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete blog");
       router.push("/blog");
     } catch (err) {

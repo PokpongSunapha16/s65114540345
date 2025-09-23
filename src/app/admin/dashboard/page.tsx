@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchDashboardData() {
       try {
-        const res = await fetch("/api/admin/dashboard");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/dashboard`);
         if (!res.ok) throw new Error("Failed to fetch dashboard data");
         const dashboardData = await res.json();
         setData(dashboardData);

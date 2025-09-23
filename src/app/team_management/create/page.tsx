@@ -47,7 +47,7 @@ const CreateTeamPage = () => {
     };
   
 
-    const res = await fetch("/api/team_management/create", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

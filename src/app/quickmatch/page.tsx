@@ -43,7 +43,7 @@ const QuickmatchPage = () => {
 
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/quickmatch?district=${selectedDistrict}&type=${selectedTeamType}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/quickmatch?district=${selectedDistrict}&type=${selectedTeamType}`);
       const data = await res.json();
       
       if (data.teams && data.teams.length === 0) {
@@ -62,7 +62,7 @@ const QuickmatchPage = () => {
 // ฟังก์ชั่นเข้าร่วมทีมและเพิ่มผู้เล่นลงในทีม
 const handleJoinTeam = async (teamName: string) => {
   try {
-    const response = await fetch(`/api/team_management/${encodeURIComponent(teamName)}/join`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team_management/${encodeURIComponent(teamName)}/join`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
