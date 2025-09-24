@@ -66,7 +66,7 @@ export default function EditContactPage() {
         throw new Error(`บันทึกข้อมูลล้มเหลว: ${errorData.error}`);
       }
 
-      router.push("/profile/contact");
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/profile/contact`);
     } catch (error) {
       console.error("❌ Error saving contact:", error);
       setErrorMessage("เกิดข้อผิดพลาดในการบันทึกข้อมูล");

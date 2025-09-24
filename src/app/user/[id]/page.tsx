@@ -112,7 +112,7 @@ export default function UserProfilePage() {
       {/* ข้อมูลโปรไฟล์ */}
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
         <img
-          src={profile?.profile_picture || "/default-profile.png"}
+          src={profile?.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-profile.png`}
           alt="Profile Picture"
           className="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-orange-400"
         />
@@ -126,7 +126,7 @@ export default function UserProfilePage() {
         {/* ✅ ปุ่ม "ข้อมูลการติดต่อ" ให้ทุกคนสามารถเห็นได้ */}
         <div className="mt-6 flex justify-center">
           <button
-            onClick={() => router.push(`/user/${userId}/contact`)}  // 🔥 เพิ่ม onClick
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/user/${userId}/contact`)}  // 🔥 เพิ่ม onClick
             className="bg-green-500 text-white py-2 px-4 text-sm rounded hover:bg-green-600 transition"
           >
             ข้อมูลการติดต่อ
@@ -177,7 +177,7 @@ export default function UserProfilePage() {
     <div key={index} className="border p-4 mt-4 rounded w-full">
       <div className="flex items-center">
         <img
-          src={review.reviewer_user.profile_picture || "/default-profile.png"}
+          src={review.reviewer_user.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-profile.png`}
           alt="Reviewer"
           className="w-10 h-10 rounded-full mr-3"
         />

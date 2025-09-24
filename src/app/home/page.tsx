@@ -155,7 +155,7 @@ export default function Home() {
             <div
               key={blog.id}
               className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
-              onClick={() => router.push(`/blog/show/${blog.slug}`)}
+              onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${blog.slug}`)}
             >
               {/* ✅ แก้ไขการแสดงรูปภาพ */}
               {blog.picture ? (
@@ -177,7 +177,9 @@ export default function Home() {
           ))}
         </div>
         <div className="text-right text-sm mt-4 cursor-pointer hover:underline">
-          <span onClick={() => router.push('/blog')}>MORE ...</span>
+          <span onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog`)}>
+            MORE ...
+          </span>
         </div>
       </section>
     
@@ -193,7 +195,7 @@ export default function Home() {
               users.map((user) => (
                 <div key={user.id} className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
                   <img
-                    src={user.profile_picture || '/default-avatar.png'}
+                    src={user.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-avatar.png`}
                     alt={user.username}
                     className="w-20 h-20 rounded-full object-cover mb-2"
                   />
@@ -207,7 +209,9 @@ export default function Home() {
           </div>
         )}
         <div className="text-right text-sm mt-4 cursor-pointer hover:underline">
-          <span onClick={() => router.push('/findplayer')}>MORE ...</span>
+          <span onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/findplayer`)}>
+            MORE ...
+          </span>
         </div>
       </section>
     </div>

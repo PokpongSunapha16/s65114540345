@@ -104,7 +104,7 @@ export default function ProfilePage() {
   }, []);
 
   const handleEditRedirect = () => {
-    router.push("/edit_profile");
+    router.push(`${process.env.NEXT_PUBLIC_API_URL}/edit_profile`);
   };
 
   const handleImageClick = (image: string) => {
@@ -180,7 +180,7 @@ export default function ProfilePage() {
     {/* Profile Section */}
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
       <img
-        src={profile?.profile_picture || "/default-profile.png"}
+        src={profile?.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-profile.png`}
         alt="Profile Picture"
         className="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-orange-400"
       />
@@ -201,7 +201,7 @@ export default function ProfilePage() {
         </button>
 
         <button
-          onClick={() => router.push("/profile/contact")} // ✅ เพิ่ม onClick
+          onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/profile/contact`)} // ✅ เพิ่ม onClick
           className="bg-green-500 text-white py-2 px-4 text-sm rounded hover:bg-green-600"
         >
           ข้อมูลการติดต่อ
@@ -240,7 +240,7 @@ export default function ProfilePage() {
         </div>
         <div className="mt-4 flex justify-center">
           <button
-            onClick={() => router.push("/upload_gallery")}
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/upload_gallery`)}
             className="bg-green-500 text-white text-sm px-3 py-1 rounded hover:bg-green-600"
           >
             อัพโหลดรูปภาพ
@@ -265,7 +265,7 @@ export default function ProfilePage() {
           <div key={index} className="border p-2 mt-2 rounded text-left">
             <div className="flex items-center">
               <img
-                src={review.reviewer_user.profile_picture || "/default-profile.png"}
+                src={review.reviewer_user.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-profile.png`}
                 alt="Reviewer"
                 className="w-10 h-10 rounded-full mr-3"
               />

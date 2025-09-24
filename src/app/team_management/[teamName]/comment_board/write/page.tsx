@@ -46,7 +46,7 @@ export default function WriteComment() {
         setContent(""); // ✅ เคลียร์ช่องข้อความหลังจากโพสต์สำเร็จ
         setTimeout(() => {
           setSuccess(false);
-          router.push(`/team_management/${safeTeamName}/comment_board`);
+          router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/${safeTeamName}/comment_board`);
         }, 1500);
       } else {
         setError(data.error || "❌ เกิดข้อผิดพลาด กรุณาลองใหม่");

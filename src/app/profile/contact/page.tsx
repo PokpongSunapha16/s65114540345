@@ -51,7 +51,7 @@ export default function ContactDetailPage() {
 
       {/* ปุ่มแก้ไขข้อมูล */}
       <button
-        onClick={() => router.push("/profile/contact/edit")}
+        onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/profile/contact/edit`)}
         className="absolute top-4 right-4 bg-blue-500 hover:bg-orange-500 text-white font-bold py-2 px-3 rounded-full flex items-center shadow-md transition cursor-pointer"
       >
         ✏ แก้ไขข้อมูล

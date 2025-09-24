@@ -17,26 +17,26 @@ export default function GetHoopPage() {
 
         <div className="space-y-4">
         <button
-            onClick={() => handleNavigate("/quickmatch")}
+            onClick={() => handleNavigate(`${process.env.NEXT_PUBLIC_API_URL}/quickmatch`)}
             className="w-full py-3 text-red-500 font-semibold border border-red-500 rounded-lg hover:bg-red-500 hover:text-white transition duration-300"
           >
             QUICK MATCH
           </button>
 
           <button
-            onClick={() => handleNavigate("/findteam")}
+            onClick={() => handleNavigate(`${process.env.NEXT_PUBLIC_API_URL}/findteam`)}
             className="w-full py-3 text-black font-semibold border border-gray-300 rounded-lg hover:bg-gray-200 transition duration-300"
           >
             ค้นหาทีม
           </button>
           <button
-            onClick={() => handleNavigate("/findplayer")}
+            onClick={() => handleNavigate(`${process.env.NEXT_PUBLIC_API_URL}/findplayer`)}
             className="w-full py-3 text-black font-semibold border border-gray-300 rounded-lg hover:bg-gray-200 transition duration-300"
           >
             ค้นหาผู้เล่น
           </button>
           <button
-            onClick={() => handleNavigate("/team_management")}
+            onClick={() => handleNavigate(`${process.env.NEXT_PUBLIC_API_URL}/team_management`)}
             className="w-full py-3 text-orange-500 font-semibold border border-orange-500 rounded-lg hover:bg-orange-500 hover:text-white transition duration-300"
           >
             ทีมของคุณ

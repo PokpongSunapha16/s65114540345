@@ -56,7 +56,7 @@ export default function EditBlogPage() {
 
       if (!res.ok) throw new Error("Failed to update blog");
 
-      router.push(`/blog/show/${slug}`);
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${slug}`);
     } catch (err) {
       setError("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
     }
@@ -98,7 +98,7 @@ export default function EditBlogPage() {
       />
 
       <div className="flex justify-between">
-        <button onClick={() => router.push(`/blog/show/${slug}`)} className="bg-gray-300 p-2 rounded">
+        <button onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${slug}`)} className="bg-gray-300 p-2 rounded">
           ยกเลิก
         </button>
         <button onClick={handleSave} className="bg-blue-500 text-white p-2 rounded">

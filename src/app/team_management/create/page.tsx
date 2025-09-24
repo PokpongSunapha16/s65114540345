@@ -56,7 +56,7 @@ const CreateTeamPage = () => {
     });
 
     if (res.ok) {
-      router.push("/team_management");
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management`);
     } else {
       console.error("Failed to create team");
     }

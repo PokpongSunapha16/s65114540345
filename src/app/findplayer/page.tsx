@@ -126,7 +126,7 @@ const FindPlayerPage = () => {
   };
 
   const handleViewProfile = (playerId: number) => {
-    router.push(`/user/${playerId}`); // นำทางไปยังหน้าโปรไฟล์ของผู้เล่น
+    router.push(`${process.env.NEXT_PUBLIC_API_URL}/user/${playerId}`); // นำทางไปยังหน้าโปรไฟล์ของผู้เล่น
   };
 
   const handleInvitePlayer = async () => {

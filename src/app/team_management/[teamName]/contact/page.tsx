@@ -78,7 +78,7 @@ export default function TeamContactPage() {
       {team.contacts.map((contact) => (
        <div key={contact.userId} className="flex items-center bg-gray-100 p-4 rounded-lg mb-3 border border-gray-300">
             <img
-              src={contact.profile_picture || "/default-avatar.png"}
+              src={contact.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-avatar.png`}
               alt={contact.username}
               className="w-12 h-12 rounded-full mr-4"
             />
@@ -89,7 +89,7 @@ export default function TeamContactPage() {
               <button
               onClick={() => {
                 if (contact?.userId) { 
-                  router.push(`/user/${contact.userId}/contact`); // ✅ ใช้ userId ที่ถูกต้อง
+                  router.push(`${process.env.NEXT_PUBLIC_API_URL}/user/${contact.userId}/contact`); // ✅ ใช้ userId ที่ถูกต้อง
                 } else {
                   alert("ไม่พบข้อมูลการติดต่อของผู้เล่นนี้");
                 }

@@ -199,7 +199,7 @@ export default function AdminUsers() {
               {/* ✅ ปุ่มตรวจสอบไปยังโปรไฟล์ผู้ใช้ */}
               <div className="flex space-x-4 mt-4">
                 <button
-                  onClick={() => router.push(`/user/${user.id}`)}
+                  onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/user/${user.id}`)}
                   className="bg-blue-500 text-white px-2 py-1 rounded w-auto"
                 >
                   🔍 ตรวจสอบ

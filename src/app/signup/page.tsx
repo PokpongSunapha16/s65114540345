@@ -67,7 +67,7 @@ export default function SignUp() {
         setError(errorData.message || "Failed to register");
       } else {
         alert("สมัครสมาชิกสำเร็จ!");
-        router.push("/signin");
+        router.push(`${process.env.NEXT_PUBLIC_API_URL}/signin`);
       }
     } catch (error) {
       console.error("Error during registration:", error);
@@ -182,7 +182,7 @@ export default function SignUp() {
           คุณมีสมาชิกแล้วใช่ไหม?{" "}
           <span
             className="text-orange-500 font-medium cursor-pointer hover:underline"
-            onClick={() => router.push("/signin")}
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/signin`)}
           >
             เข้าสู่ระบบ
           </span>

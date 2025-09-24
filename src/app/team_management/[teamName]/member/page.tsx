@@ -105,7 +105,7 @@ export default function TeamMembersPage() {
           <div key={member.id} className="flex items-center justify-between bg-gray-100 p-3 rounded-lg mb-3">
             <div className="flex items-center">
               <img
-                src={member.profile_picture || "/default-avatar.png"}
+                src={member.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-avatar.png`}
                 alt={member.username}
                 className="w-12 h-12 rounded-full mr-4"
               />

@@ -64,7 +64,7 @@ export default function BlogPage() {
             blogs.map((blog) => (
               <div
                 key={blog.id}
-                onClick={() => router.push(`/blog/show/${blog.slug}`)}
+                onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${blog.slug}`)}
                 className="bg-white shadow-lg rounded-lg overflow-hidden mb-6 cursor-pointer"
               >
                 {blog.picture ? (
@@ -108,7 +108,7 @@ export default function BlogPage() {
             />
             <button
               className="w-full bg-gray-700 text-white p-2 mt-2 rounded"
-              onClick={() => router.push("/blog/create")}
+              onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/create`)}
             >
               สร้างบล็อก
             </button>
@@ -117,7 +117,7 @@ export default function BlogPage() {
           {/* ปุ่ม บล็อกของคุณ */}
           <button
             className="w-full bg-orange-500 text-white p-2 rounded-lg"
-            onClick={() => router.push("/blog/userBlogs")}
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/userBlogs`)}
           >
             บล็อกของคุณ
           </button>
@@ -127,17 +127,17 @@ export default function BlogPage() {
             <h3 className="text-lg font-semibold">ประเภทบล็อก</h3>
             <ul className="mt-2 space-y-2">
               <li>
-              <button onClick={() => router.push("/blog/category/general")} className="bg-gray-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/category/general`)} className="bg-gray-500 text-white px-4 py-2 rounded-md">
                 📌 เรื่องทั่วไป
               </button>
               </li>
               <li>
-              <button onClick={() => router.push("/blog/category/health")} className="bg-green-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/category/health`)} className="bg-green-500 text-white px-4 py-2 rounded-md">
                 🏥 สุขภาพ
               </button>
               </li>
               <li>
-              <button onClick={() => router.push("/blog/category/basketball")} className="bg-blue-500 text-white px-4 py-2 rounded-md">
+              <button onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/category/basketball`)} className="bg-blue-500 text-white px-4 py-2 rounded-md">
                 🏀 บาสเกตบอล
               </button>
               </li>

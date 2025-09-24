@@ -94,7 +94,7 @@ export default function EditTeamPage() {
       }
 
       alert("✅ ข้อมูลทีมอัปเดตสำเร็จ!");
-      router.push(`/team_management/`);
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/`);
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error updating team:", error);
@@ -117,7 +117,7 @@ export default function EditTeamPage() {
       <div className="flex flex-col items-center">
         <label htmlFor="teamLogo" className="cursor-pointer">
           <img
-            src={team.team_logo || "/default-team.png"}
+            src={team.team_logo || `${process.env.NEXT_PUBLIC_API_URL}/default-team.png`}
             alt="Team Logo"
             className="w-24 h-24 rounded-full border-2 border-gray-300 object-cover"
           />

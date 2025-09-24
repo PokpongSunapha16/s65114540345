@@ -52,7 +52,7 @@ export default function UserBlogsPage() {
           {blogs.map((blog) => (
             <div
               key={blog.id}
-              onClick={() => router.push(`/blog/show/${blog.slug}`)}
+              onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${blog.slug}`)}
               className="p-4 border rounded-lg shadow-md cursor-pointer hover:bg-gray-100 transition"
             >
               <h2 className="text-xl font-semibold">{blog.title}</h2>

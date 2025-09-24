@@ -198,7 +198,7 @@ export default function FindTeamPage() {
               onClick={() => handleOpenPopup(team)}
             >
               <img
-                src={team.team_logo || "/default-team.png"}
+                src={team.team_logo || `${process.env.NEXT_PUBLIC_API_URL}/default-team.png`}
                 alt={team.name}
                 className="w-16 h-16 rounded-full mr-4"
               />

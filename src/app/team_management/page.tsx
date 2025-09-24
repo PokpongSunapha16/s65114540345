@@ -59,7 +59,7 @@ export default function TeamManagementPage() {
 
       <div className="flex justify-between items-center bg-black py-2 px-4 rounded-lg shadow-md mb-6 w-2/3 mx-auto">
         <button
-          onClick={() => router.push("/team_management/create")}
+          onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/create`)}
           className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
         >
           สร้างทีม
@@ -87,10 +87,10 @@ export default function TeamManagementPage() {
               <div
                 key={team.id}
                 className="flex items-center p-4 border rounded-lg shadow-md bg-white cursor-pointer hover:bg-gray-100 transition"
-                onClick={() => router.push(`/team_management/${encodeURIComponent(team.name.replace(/ /g, "-"))}`)}
+                onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/${encodeURIComponent(team.name.replace(/ /g, "-"))}`)}
               >
                 <img
-                  src={team.team_logo || "/default-team.png"}
+                  src={team.team_logo || `${process.env.NEXT_PUBLIC_API_URL}/default-team.png`}
                   alt={team.name}
                   className="w-16 h-16 rounded-full mr-4"
                 />

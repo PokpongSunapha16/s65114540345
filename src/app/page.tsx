@@ -6,6 +6,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function Index() {
   return (
@@ -24,7 +25,7 @@ export default function Index() {
               </h2>
               <div className="flex justify-center md:justify-start mb-4">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API_URL}/images/logo.png`}
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}}/images/logo.png`}
                   alt="Ubon Hooper Club Logo"
                   width={250}
                   height={250}
@@ -35,7 +36,7 @@ export default function Index() {
 
             {/* Right Side: Image Swiper */}
             <div className="flex justify-center items-center w-full h-[400px]">
-              <Swiper
+             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={20}
                 slidesPerView={1}
@@ -45,17 +46,17 @@ export default function Index() {
                 loop
                 className="w-full h-full"
               >
-                {/* Swiper Slides */}
                 {["SamplePic2.jpg", "SamplePic3.jpg", "SamplePic4.jpg", "SamplePic.jpg"].map(
                   (pic, index) => (
                     <SwiperSlide key={index} className="flex justify-center items-center">
                       <div className="relative w-full h-[400px]">
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_API_URL}/images/${pic}`}
+                          src={`${basePath}/images/${pic}`}
                           alt={`Slide ${index + 1}`}
                           fill
-                          style={{ objectFit: "cover" }} // ใช้ style สำหรับปรับขนาดรูปภาพ
+                          style={{ objectFit: "cover" }}
                           className="rounded-lg shadow-md"
+                          unoptimized   // ถ้าไฟล์อยู่ใน public แนะนำใส่ unoptimized
                         />
                       </div>
                     </SwiperSlide>

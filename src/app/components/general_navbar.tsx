@@ -11,7 +11,7 @@ const GeneralNavbar: React.FC = () => {
         <div className="flex items-center">
           <div className="flex-shrink-0">
             <Image
-              src="/images/logo.png" // Path รูปใน public
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/logo.png`} // Path รูปใน public
               alt="Logo"
               width={50} // ปรับขนาดรูปให้เล็กลงเพื่อความคมชัด
               height={50}
@@ -28,13 +28,13 @@ const GeneralNavbar: React.FC = () => {
           <Link href="/" className="text-white hover:text-gray-400">
             หน้าแรก
           </Link>
-          <Link href="/blog" className="text-white hover:text-gray-400">
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL}/blog`} className="text-white hover:text-gray-400">
             บล็อก
           </Link>
-          <Link href="/about" className="text-white hover:text-gray-400">
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL}/about`} className="text-white hover:text-gray-400">
             เกี่ยวกับ
           </Link>
-          <Link href="/signin" className="text-white hover:text-gray-400">
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL}/signin`} className="text-white hover:text-gray-400">
             เข้าสู่ระบบ
           </Link>
 

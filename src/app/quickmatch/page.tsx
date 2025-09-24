@@ -73,7 +73,7 @@ const handleJoinTeam = async (teamName: string) => {
 
     if (response.ok) {
       alert(`เข้าร่วมทีม ${teamName} สำเร็จ!`);
-      router.push(`/team_management/`);
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/`);
     } else {
       alert(`เกิดข้อผิดพลาด: ${result.error}`);
     }
@@ -139,7 +139,7 @@ const handleJoinTeam = async (teamName: string) => {
         </button>
 
         <button
-          onClick={() => router.push("/home")}
+          onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/home`)}
           className="px-6 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 focus:outline-none"
         >
           ยกเลิก

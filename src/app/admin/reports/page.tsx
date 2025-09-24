@@ -73,7 +73,7 @@ export default function AdminReports() {
 
               {/* ✅ ปุ่มตรวจสอบ */}
               <button
-                onClick={() => router.push(`/blog/show/${report.blog.slug}`)}
+                onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${report.blog.slug}`)}
                 className="bg-blue-500 text-white px-4 py-2 rounded mt-2 mr-2"
               >
                 🔍 ตรวจสอบ

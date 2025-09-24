@@ -57,7 +57,7 @@ export default function CategoryPage() {
             <div
               key={blog.id}
               className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transition-transform transform hover:scale-105"
-              onClick={() => router.push(`/blog/show/${blog.slug}`)}
+              onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${blog.slug}`)}
             >
               {blog.picture && (
                 <img

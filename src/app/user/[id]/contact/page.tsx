@@ -70,7 +70,7 @@ export default function UserContactPage() {
 
       <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6">
         <img
-          src={user.profile_picture || "/default-avatar.png"}
+          src={user.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-avatar.png`}
           alt="Profile"
           className="w-24 h-24 rounded-full mx-auto mb-4"
         />

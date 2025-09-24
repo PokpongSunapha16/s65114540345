@@ -23,7 +23,7 @@ export default function LeaveTeamButton() {
       if (!response.ok) throw new Error("Failed to leave team");
 
       setShowLeavePopup(false); // ✅ ปิด Popup หลังจากออกจากทีม
-      router.push("/team_management"); // ✅ Redirect ทันทีโดยไม่มีแจ้งเตือน
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management`); // ✅ Redirect ทันทีโดยไม่มีแจ้งเตือน
     } catch (error) {
       console.error("Error leaving team:", error);
     } finally {

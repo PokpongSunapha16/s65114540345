@@ -116,7 +116,7 @@ export default function CommentSection({ slug, userId }: { slug: string; userId:
             <div key={comment.id} className="flex items-start space-x-3 p-3 border-b">
               {/* 📷 รูปโปรไฟล์ผู้คอมเมนต์ */}
               <img
-                src={comment.author.profile_picture || "/default-avatar.png"}
+                src={comment.author.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-avatar.png`}
                 className="w-10 h-10 rounded-full"
                 alt={comment.author.username}
               />

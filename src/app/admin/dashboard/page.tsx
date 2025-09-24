@@ -47,10 +47,10 @@ export default function AdminDashboard() {
       )}
 
       <div className="mt-4 space-y-2">
-        <Link href="/admin/announcements" className="block bg-gray-200 p-4 rounded">📢 จัดการประกาศ</Link>
-        <Link href="/admin/reports" className="block bg-gray-200 p-4 rounded">🚨 จัดการรายงานบล็อก</Link>
-        <Link href="/admin/blogs" className="block bg-gray-200 p-4 rounded">📝 จัดการบล็อก</Link>
-        <Link href="/admin/users" className="block bg-gray-200 p-4 rounded">👥 จัดการสมาชิก</Link>
+        <Link href={`${process.env.NEXT_PUBLIC_API_URL}/admin/announcements`} className="block bg-gray-200 p-4 rounded">📢 จัดการประกาศ</Link>
+        <Link href={`${process.env.NEXT_PUBLIC_API_URL}/admin/reports`} className="block bg-gray-200 p-4 rounded">🚨 จัดการรายงานบล็อก</Link>
+        <Link href={`${process.env.NEXT_PUBLIC_API_URL}/admin/blogs`} className="block bg-gray-200 p-4 rounded">📝 จัดการบล็อก</Link>
+        <Link href={`${process.env.NEXT_PUBLIC_API_URL}/admin/users`} className="block bg-gray-200 p-4 rounded">👥 จัดการสมาชิก</Link>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ export default function SignIn() {
 
         setTimeout(() => {
           router.refresh(); // ✅ รีเฟรช UI ทั้งหมด
-          router.push("/home"); // ✅ ไปหน้า home
+          router.push(`${process.env.NEXT_PUBLIC_API_URL}/home`); // ✅ ไปหน้า home
         }, 200); // ✅ ดีเลย์เล็กน้อยให้ Navbar อัปเดตก่อน
       } else {
         const errorData = await res.json();
@@ -98,7 +98,7 @@ export default function SignIn() {
           คุณมีบัญชีหรือไม่?{" "}
           <span
             className="text-orange-500 font-medium cursor-pointer hover:underline"
-            onClick={() => router.push("/signup")}
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/signup`)}
           >
             สมัครสมาชิก
           </span>

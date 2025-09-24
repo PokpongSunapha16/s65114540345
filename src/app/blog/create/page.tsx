@@ -67,7 +67,7 @@ export default function CreateBlogPage() {
     const data = await response.json();
 
     if (data.success) {
-      router.push(`/blog/show/${data.slug}`);
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${data.slug}`);
     } else {
       setErrorMessage("เกิดข้อผิดพลาด: " + data.error);
     }
@@ -150,7 +150,7 @@ export default function CreateBlogPage() {
           <button
             type="button"
             className="w-full bg-red-600 text-white p-3 rounded-lg font-bold"
-            onClick={() => router.push("/blog")}
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog`)}
           >
             ยกเลิก
           </button>

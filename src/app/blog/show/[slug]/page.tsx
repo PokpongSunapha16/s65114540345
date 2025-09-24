@@ -71,7 +71,7 @@ export default function BlogDetail() {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/blog/show/${slug}/delete`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete blog");
-      router.push("/blog");
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog`);
     } catch (err) {
       console.error("🚨 Error deleting blog:", err);
     }
@@ -85,7 +85,7 @@ export default function BlogDetail() {
     <div className="relative p-6 max-w-4xl mx-auto">
 
       <button
-            onClick={() => router.push(`/blog/show/${slug}/report`)}
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${slug}/report`)}
             className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300"
           >
             รายงานปัญหา
@@ -95,7 +95,7 @@ export default function BlogDetail() {
       {blog.isOwner && (
         <>
           <button
-            onClick={() => router.push(`/blog/show/${slug}/edit`)}
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/blog/show/${slug}/edit`)}
             className="absolute top-16 right-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300"
           >
             ✏ แก้ไขบล็อก

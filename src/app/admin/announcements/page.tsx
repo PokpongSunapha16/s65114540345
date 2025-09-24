@@ -49,7 +49,7 @@ export default function AdminAnnouncements() {
   useEffect(() => {
     async function fetchFeaturedAnnouncements() {
       try {
-        const res = await fetch("${process.env.NEXT_PUBLIC_API_URL}/api/admin/featured-announcements");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/featured-announcements`);
         if (!res.ok) throw new Error("Failed to fetch featured announcements");
         const data = await res.json();
         setFeaturedAnnouncements(data);
@@ -64,7 +64,7 @@ export default function AdminAnnouncements() {
   // ✅ ฟังก์ชันเพิ่มประกาศทั่วไป
   const handleCreateAnnouncement = async () => {
     try {
-      const res = await fetch("${process.env.NEXT_PUBLIC_API_URL}/api/admin/announcements", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/announcements`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: newContent }),
@@ -79,7 +79,7 @@ export default function AdminAnnouncements() {
   // ✅ ฟังก์ชันเพิ่ม Featured Announcement
   const handleCreateFeatured = async () => {
     try {
-      const res = await fetch("${process.env.NEXT_PUBLIC_API_URL}/api/admin/featured-announcements", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/featured-announcements`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newFeatured),
@@ -94,7 +94,7 @@ export default function AdminAnnouncements() {
   // ✅ ฟังก์ชันลบ Featured Announcement
   const handleDeleteFeatured = async (id: number) => {
     try {
-      const res = await fetch("${process.env.NEXT_PUBLIC_API_URL}/api/admin/featured-announcements", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/featured-announcements`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),

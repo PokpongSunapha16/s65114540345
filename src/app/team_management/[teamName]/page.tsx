@@ -133,7 +133,7 @@ export default function TeamDetailPage() {
 
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6 text-center">
         <img
-          src={team.team_logo || "/default-team.png"}
+          src={team.team_logo || `${process.env.NEXT_PUBLIC_API_URL}/default-team.png`}
           alt={team.name}
           className="w-24 h-24 mx-auto rounded-full"
         />
@@ -166,7 +166,7 @@ export default function TeamDetailPage() {
     {/* ✅ ปุ่มแก้ไข (เฉพาะเจ้าของทีม) */}
     {isOwner && (
       <button
-      onClick={() => router.push(`/team_management/${encodeURIComponent(teamName as string)}/edit`)}
+      onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/${encodeURIComponent(teamName as string)}/edit`)}
       className="bg-gray-200 hover:bg-gray-300 px-4 py-1 rounded-md text-sm flex items-center space-x-1"
     >
         ✏️ แก้ไขข้อมูลทีม
@@ -197,21 +197,21 @@ export default function TeamDetailPage() {
 
       <div className="mt-6 w-full max-w-md space-y-3">
         <button
-        onClick={() => router.push(`/team_management/${encodeURIComponent(teamName as string)}/member`)}
+        onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/${encodeURIComponent(teamName as string)}/member`)}
         className="w-full bg-white flex items-center justify-center border-2 border-gray-400 p-4 rounded-lg text-lg font-bold shadow-md">
           🏀 สมาชิกทีม
         </button>
 
         <button
             className="w-full bg-white flex items-center justify-center border-2 border-gray-400 p-4 rounded-lg text-lg font-bold shadow-md"
-            onClick={() => router.push(`/team_management/${teamName}/contact`)} // ✅ นำทางไปหน้า contact
+            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/${teamName}/contact`)} // ✅ นำทางไปหน้า contact
         >
             📞 ช่องทางติดต่อ
         </button>
 
 
         <button className="w-full bg-white flex items-center justify-center border-2 border-gray-400 p-4 rounded-lg text-lg font-bold shadow-md"
-        onClick={() => router.push(`/team_management/${teamName}/comment_board`)}
+        onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/team_management/${teamName}/comment_board`)}
         >
         📋 กระดานความคิดเห็น
         </button>

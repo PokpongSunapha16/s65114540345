@@ -51,7 +51,7 @@ export default function EditProfilePage() {
 
       if (!res.ok) throw new Error("Failed to update profile");
       alert("โปรไฟล์ถูกอัปเดตเรียบร้อยแล้ว!");
-      router.push("/profile");
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/profile`);
     } catch (error) {
       console.error("Error updating profile:", error);
       alert("เกิดข้อผิดพลาดในการอัปเดตโปรไฟล์");
@@ -61,7 +61,7 @@ export default function EditProfilePage() {
   };
 
   const handleCancel = () => {
-    router.push("/profile");
+    router.push(`${process.env.NEXT_PUBLIC_API_URL}/profile`);
   };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,7 +81,7 @@ export default function EditProfilePage() {
         {/* รูปโปรไฟล์ */}
         <div className="flex flex-col items-center mb-4">
           <img
-            src={newProfilePicture || "/default-profile.png"}
+            src={newProfilePicture || `${process.env.NEXT_PUBLIC_API_URL}/default-profile.png`}
             alt="Profile Picture"
             className="w-32 h-32 rounded-full mb-4 border-2 border-orange-400"
           />

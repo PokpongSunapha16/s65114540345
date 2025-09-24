@@ -72,7 +72,7 @@ export default function CommentBoard() {
               >
                 {/* รูปโปรไฟล์ */}
                 <img
-                  src={comment.user.profile_picture || "/default-avatar.png"}
+                  src={comment.user.profile_picture || `${process.env.NEXT_PUBLIC_API_URL}/default-avatar.png`}
                   className="w-12 h-12 rounded-full border border-gray-300"
                   alt={comment.user.username}
                 />

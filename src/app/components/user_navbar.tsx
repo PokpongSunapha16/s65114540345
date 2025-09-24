@@ -120,7 +120,7 @@ const UserNavbar: React.FC = () => {
       setUserRole(null);
 
       router.refresh(); // ✅ รีเฟรช NavbarWrapper
-      router.push("/signin");
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/signin`);
     } catch (error) {
       console.error("❌ Error logging out:", error);
     }
@@ -131,14 +131,14 @@ const UserNavbar: React.FC = () => {
       <div className="flex justify-between items-center">
 
         <div className="flex items-center">
-          <Image src="/images/logo.png" alt="Logo" width={50} height={50} className="mr-2" />
+          <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/logo.png`} alt="Logo" width={50} height={50} className="mr-2" />
           <h1 className="text-white text-xl font-semibold hidden sm:block">Ubon Hooper Club</h1>
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4">
 
           {isLoggedIn && (
-            <Link href="/notifications" className="relative text-white hover:text-gray-400" onClick={handleNotificationClick}>
+            <Link href={`${process.env.NEXT_PUBLIC_API_URL}/notifications`} className="relative text-white hover:text-gray-400" onClick={handleNotificationClick}>
               🔔
               {hasUnread && <span className="absolute top-0 right-0 bg-red-500 text-xs w-3 h-3 rounded-full"></span>}
             </Link>
@@ -146,28 +146,28 @@ const UserNavbar: React.FC = () => {
 
           {/* ✅ แสดงปุ่ม Dashboard เฉพาะ ADMIN */}
           {isLoggedIn && userRole === "ADMIN" && (
-            <Link href="/admin/dashboard" className="bg-white text-orange-600 px-3 py-1 rounded hover:bg-gray-200 text-sm">
+            <Link href={`${process.env.NEXT_PUBLIC_API_URL}/admin/dashboard`} className="bg-white text-orange-600 px-3 py-1 rounded hover:bg-gray-200 text-sm">
               Dashboard
             </Link>
           )}
 
-          <Link href="/home" className="text-white hover:text-gray-400">หน้าแรก</Link>
+          <Link href={`${process.env.NEXT_PUBLIC_API_URL}/home`} className="text-white hover:text-gray-400">หน้าแรก</Link>
 
           {/* ✅ ซ่อน GET HOOP และ BLOG ถ้าไม่ได้ล็อกอิน */}
           {isLoggedIn && (
             <>
-              <Link href="/gethoop" className="text-white hover:text-gray-400">GET HOOP</Link>
-              <Link href="/blog" className="text-white hover:text-gray-400">บล็อก</Link>
+              <Link href={`${process.env.NEXT_PUBLIC_API_URL}/gethoop`} className="text-white hover:text-gray-400">GET HOOP</Link>
+              <Link href={`${process.env.NEXT_PUBLIC_API_URL}/blog`} className="text-white hover:text-gray-400">บล็อก</Link>
             </>
           )}
 
           {isLoggedIn ? (
             <>
-              <Link href="/profile" className="text-white hover:text-gray-400">โปรไฟล์</Link>
+              <Link href={`${process.env.NEXT_PUBLIC_API_URL}/profile`} className="text-white hover:text-gray-400">โปรไฟล์</Link>
               <button onClick={handleLogout} className="text-white hover:text-red-600">ออกจากระบบ</button>
             </>
           ) : (
-            <Link href="/signin" className="text-white hover:text-gray-400">เข้าสู่ระบบ</Link>
+            <Link href={`${process.env.NEXT_PUBLIC_API_URL}/signin`} className="text-white hover:text-gray-400">เข้าสู่ระบบ</Link>
           )}
         </div>
       </div>
