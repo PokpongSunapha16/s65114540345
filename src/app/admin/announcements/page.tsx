@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Announcement {
   id: number;
@@ -174,9 +175,9 @@ export default function AdminAnnouncements() {
             <h2 className="text-lg font-semibold">📢 {announcement.title}</h2>
             <img src={announcement.image} alt={announcement.title} className="w-full h-40 object-cover rounded mt-2" />
             <p className="mt-2">{announcement.details}</p>
-            <a href={announcement.linkUrl} target="_blank" className="text-blue-500 hover:underline">
+            <Link href={announcement.linkUrl} target="_blank" className="text-blue-500 hover:underline">
               🔗 ดูเพิ่มเติม
-            </a>
+            </Link>
             <p className="text-sm text-gray-500 mt-1">อัพเดทล่าสุด: {new Date(announcement.createdAt || "").toLocaleString()}</p>
             <button
               onClick={() => handleDeleteFeatured(announcement.id!)}

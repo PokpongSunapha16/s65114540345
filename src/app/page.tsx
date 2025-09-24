@@ -24,7 +24,7 @@ export default function Index() {
               </h2>
               <div className="flex justify-center md:justify-start mb-4">
                 <Image
-                  src="/images/logo.png"
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/images/logo.png`}
                   alt="Ubon Hooper Club Logo"
                   width={250}
                   height={250}
@@ -51,7 +51,7 @@ export default function Index() {
                     <SwiperSlide key={index} className="flex justify-center items-center">
                       <div className="relative w-full h-[400px]">
                         <Image
-                          src={`/images/${pic}`}
+                          src={`${process.env.NEXT_PUBLIC_API_URL}/images/${pic}`}
                           alt={`Slide ${index + 1}`}
                           fill
                           style={{ objectFit: "cover" }} // ใช้ style สำหรับปรับขนาดรูปภาพ

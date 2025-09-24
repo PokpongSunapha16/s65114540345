@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import Link from "next/link";
 
 interface ContactDetail {
   facebook: string;
@@ -79,7 +80,7 @@ export default function UserContactPage() {
           </div>
           <div className="bg-gray-100 p-3 rounded">
             📷 Instagram: {user.contact?.instagram ? (
-              <a href={`https://instagram.com/${user.contact.instagram}`} className="text-purple-600" target="_blank" rel="noopener noreferrer">@{user.contact.instagram}</a>
+              <Link href={`https://instagram.com/${user.contact.instagram}`} className="text-purple-600" target="_blank" rel="noopener noreferrer">@{user.contact.instagram}</Link>
             ) : "ไม่มี"}
           </div>
           <div className="bg-gray-100 p-3 rounded">

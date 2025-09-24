@@ -15,4 +15,8 @@ fi
 
 echo "✅ Ready! Starting Next.js in production mode..."
 
+npm run build
+
+npx prisma migrate deploy
+
 exec "$@"

@@ -11,10 +11,6 @@ COPY . .
 
 RUN npx prisma generate
 
-EXPOSE 10345
-
-RUN npm run build
-
 CMD ["npm", "run", "start"]
 
 # ใส่ entrypoint (เราจะปรับเป็น production mode ในขั้นตอนถัดไป)

@@ -26,7 +26,7 @@ export async function GET(req: Request) {
     });
 
     // ✅ ตรวจสอบว่าข้อมูลใน `picture` มี `data:image/jpeg;base64,` หรือยัง
-    const formattedBlogs = blogs.map((blog) => {
+    const formattedBlogs = blogs.map((blog : any) => {
       let picture = blog.picture;
 
       // ถ้ามี MIME Type แล้ว ไม่ต้องเติมใหม่
