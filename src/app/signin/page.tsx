@@ -98,7 +98,7 @@ export default function SignIn() {
           คุณมีบัญชีหรือไม่?{" "}
           <span
             className="text-orange-500 font-medium cursor-pointer hover:underline"
-            onClick={() => router.push(`${process.env.NEXT_PUBLIC_API_URL}/signup`)}
+            onClick={() => router.push('/signup')}
           >
             สมัครสมาชิก
           </span>
